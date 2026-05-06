@@ -1,0 +1,30 @@
+# Switch SW1 Configuration
+
+hostname SW1
+
+! Create VLANs
+vlan 10
+ name USERS
+
+vlan 20
+ name MANAGEMENT
+
+vlan 30
+ name SERVERS
+
+! Trunk port to Router
+interface GigabitEthernet0/1
+ switchport mode trunk
+
+! Access ports
+interface range FastEthernet0/1-2
+ switchport mode access
+ switchport access vlan 10
+
+interface range FastEthernet0/3-4
+ switchport mode access
+ switchport access vlan 20
+
+interface range FastEthernet0/5-6
+ switchport mode access
+ switchport access vlan 30
